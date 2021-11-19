@@ -1,0 +1,90 @@
+\documentclass{vldb}
+\usepackage{graphicx}
+\usepackage{balance}  % for  \balance command ON LAST PAGE  (only there!)
+% ****************** 中文 ****************************************
+% \usepackage{CJK}
+% ****************** 字距包 ****************************************
+% \usepackage[final,tracking=smallcaps, expansion=alltext,protrusion=true]{microtype}
+% \SetTracking{encoding=*,shape=sc}{50}
+
+% Include information below and uncomment for camera ready
+\vldbTitle{A Sample LaTeX Symbols}
+\vldbAuthors{}
+\vldbDOI{}
+\vldbVolume{12}
+\vldbNumber{xxx}
+\vldbYear{2019}
+
+\begin{document}
+
+% ****************** TITLE ****************************************
+
+\title{A Sample {\ttlit LaTex Symbols}}
+\maketitle
+% \begin{CJK*}{UTF8}{gkai}
+
+\section{Special Characters}
+\# \$ \% \& \textasciitilde \_ \textasciicircum \{  \} \textbackslash
+
+\oe \OE \ae \AE \ss
+
+\'{o} \'{o} \^{o} \~{o} \"{o} \.{o} \v{o} \u{o} \={o} \H{o} \t{oo} \c{o} \d{o} \b{o} \aa \AA \l \L \o \O %?‘ !‘
+
+\mdseries F \normalfont F \rmfamily F \upshape F \itshape F \slshape F \bfseries F \scshape F \sffamily F \ttfamily F
+
+\textmd F \textnormal F \textrm F \textup F \textit F \textsl F \textbf F \textsc F \textsf F \texttt F \normalfont
+
+\qquad - -- \, --- \textemdash \ldots
+
+\section{Special font}
+
+\textbf{Bolder}
+Normal text here. 
+{% Start a group.
+\bfseries
+Bold paragraphs in here. 
+}% Close the group.
+Back to normal text again.
+
+\emph{Emphasis}
+Typographic \emph{Style}, or \textbf{Do as he,} %,位置
+
+\textbf{Quotes}
+‘Convention’ dictates that punctuation go inside quotes, like ‘‘this,’’ but some think it’s better to do ‘‘this’’.
+
+\textbf{Abb.}
+6˜p.m.\ at; Donald˜E. is %缩写写法 
+
+x.; IX\@.%//结尾写法
+
+e.g. i.e. etc. et al.
+
+Fill in the missing word.
+
+Fill in the missing \phantom{word}.
+
+\textbf{Footnotes}
+Footnotes\footnote{A footnote is a note of reference, explanation, or comment that is usually placed below the text on a printed page.} can be a nuisance. This is especially true if there are many.\footnote{Like here.} The more you see them, the more annoying they get.\footnote{Got it?}
+
+\textbf{Size}
+\tiny a \scriptsize a \footnotesize a \small a \normalsize a \large a \Large a \LARGE a \huge a \Huge a  \begin{small} //use begin-end \end{small}
+
+\normalsize \textsc{No shouting}.
+
+\section{Alignment}
+\begin{center}
+       Blah.\\ Blah blah blah.
+       
+       Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah. 
+\end{center}
+
+\begin{flushleft} 
+       Blah.\\ Blah blah blah.
+
+       Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah. 
+\end{flushleft}
+
+
+
+% \end{CJK*}
+\end{document}

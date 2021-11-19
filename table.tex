@@ -1,0 +1,136 @@
+\documentclass{vldb}
+\usepackage{graphicx}
+\usepackage{balance}  % for  \balance command ON LAST PAGE  (only there!)
+% ****************** 表格包 ****************************************
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{siunitx}
+\usepackage{rotating}
+
+% \usepackage{sidewaystable}
+% Include information below and uncomment for camera ready
+\vldbTitle{A Sample LaTeX Charts}
+\vldbAuthors{}
+\vldbDOI{}
+\vldbVolume{12}
+\vldbNumber{xxx}
+\vldbYear{2019}
+
+\begin{document}
+
+% ****************** TITLE ****************************************
+
+\title{A Sample {\ttlit LaTex Tables p60}}
+\maketitle
+
+% ****************** 1 ****************************************
+% 线   \hlin \vline \cline{i-j}
+% 组合 \multicolumn{〈number〉}{〈column alignment〉}{〈text〉}
+% 位置 c r l p{<width>}
+\begin{table}
+       \caption{}
+       \begin{tabular}[]{l|crp{3.1cm}} 
+
+              \hline 
+              1 & 2 & 3 & Box me in, but not too tight, please. \\
+              \hline
+              11 & 12 & 13 & Excellent. \\
+              \cline{0-1}
+              111 & 112 & 113 & Thank you! \\
+              \hline 
+       \end{tabular}
+\end{table}
+
+% ****************** 2 booktabs****************************************
+% 线 \toprule[〈width〉] \bottomrule[〈width〉] \midrule[〈width〉] \cmidrule[〈width〉]{ 〈 number₁ 〉 - 〈 number₂ 〉 } \addlinespace[〈height〉]
+\begin{table}
+       \caption{using booktabs}
+       \begin{tabular}[c]{lrrp{47mm}} 
+              \toprule \multicolumn{1}{r}{\textbf{Destination}} 
+                     & \multicolumn{1}{r}{\textbf{Duration}}
+                     & \multicolumn{1}{r}{\textbf{Price}} 
+                     & \multicolumn{1}{r}{\textbf{Description}} \\
+              \midrule
+              Cork City  
+              & 7 Days & 300.00
+              & Visit Langer Land. Price includes visits 
+              to Rory Gallagher Place and de Maarkit. \\
+              \cmidrule[0.5pt](){0-1}
+              Dingle
+              & 8 Days & 400.00
+              & Have fun with Fungie. \\
+              \bottomrule 
+       \end{tabular}
+\end{table}
+
+% ****************** 3 ****************************************
+\begin{tabular*}{3cm}{@{}lcr@{}} 
+       \toprule M & M & M \\
+       \bottomrule 
+\end{tabular*} 
+
+\begin{tabular*}{3cm} 
+       {@{\extracolsep{\fill}}% 
+       lcr% 
+       @{\hspace{0pt}}} 
+       \toprule M & M & M \\
+       \bottomrule 
+\end{tabular*} 
+
+\begin{tabular*}{3cm} 
+       {@{\hspace{\tabcolsep}}% 
+       @{\extracolsep{\fill}}% 
+       lcr% 
+       @{\hspace{\tabcolsep}}} 
+       \toprule M & M & M \\
+       \bottomrule 
+\end{tabular*}
+
+% ******************  dcolumn****************************************
+\newcolumntype% 
+       {p}[1]{D{.}{.}{#1}} 
+\begin{tabular}{p2p3p0}
+       123.45 & 12.345 & 1 \\
+       1234.5 & 123 & 12 \\ 
+\end{tabular}
+\begin{tabular}{SS} 
+       123 & 23 \\ 
+       45. & 1.09 \\ 
+       .1 & 678.999 \\ 
+       7.7 & 1e10 \\ 
+       33.3 & 2.2e-5 
+\end{tabular}
+
+\begin{table}
+       \begin{tabular}{rr} 
+              \toprule 
+              \textbf{Data} & \textbf{Data} \\
+              \midrule   
+              .2\hphantom{0} & 0.00 \\ 
+              1.11 & 45.67 \\
+              45.\hphantom{00} & 56.78 \\
+              \bottomrule 
+       \end{tabular}
+\end{table}
+% ****************** 3rotating ****************************************
+\begin{sidewaystable}[!htp]
+       \centering
+       \caption{Comparisons of running time between Kaleido (KA), Arabesque (AR) RStream (RS) and ScaleMine(SM)}
+       \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}\hline
+              \multicolumn{2}{c|}{}     & \multicolumn{4}{c|}{CS}            & \multicolumn{4}{c|}{MC}                & \multicolumn{4}{c|}{PA}               & \multicolumn{4}{c}{YT}             \\ \hline
+              Apps    & Op              & KA            & AR   & RS   & SM   & KA             & AR    & RS    & SM    & KA             & AR    & RS    & SM   & KA             & AR    & RS  & SM  \\ \hline
+              FSM     & 300             & \textbf{0.04} & 23.0 & 0.14 & 1.18 & \textbf{5.6}   & 101.7 & 330.7 & 275.1 & \textbf{15.3}  & 139.8 & 1228  & 2417 & \textbf{127.4} & 587.0 & oom & oom \\
+              FSM     & 500             & \textbf{0.04} & 17.1 & 0.14 & 1.13 & \textbf{6.0}   & 70.7  & 326.2 & 170.1 & \textbf{16.5}  & 133.0 & 1220  & 2318 & \textbf{130.3} & 504.6 & oom & oom \\
+              FSM     & 1000            & \textbf{0.03} & 17.0 & 0.14 & 0.16 & \textbf{5.7}   & 46.6  & 316.6 & 48.3  & \textbf{18.3}  & 119.4 & 1222  & 2116 & \textbf{132.2} & 498.1 & oom & oom \\
+              FSM     & 5000            & \textbf{0.02} & 17.0 & 0.14 & 0.16 & \textbf{2.7}   & 29.6  & 261.7 & 7.4   & \textbf{20.2}  & 102.6 & 1179  & 779  & \textbf{160.8} & 496.1 & oom & oom \\ \hline
+              Motif   & 3               & \textbf{0.03} & 23.4 & 0.11 & -    & \textbf{0.9}   & 28.3  & 73.9  & -     & \textbf{4.2}   & 60.2  & 100.6 & -    & \textbf{38.9}  & 443.2 & oom & -   \\
+              Motif   & 4               & \textbf{0.06} & 26.1 & 0.42 & -    & \textbf{219.4} & 284.7 & /     & -     & \textbf{253.2} & 634.5 & /     & -    & \textbf{6576}  & oom   & oom & -   \\ \hline
+              Clique  & 3               & \textbf{0.02} & 23.0 & 0.02 & -    & \textbf{0.07}  & 27.9  & 4.8   & -     & \textbf{0.56}  & 60.5  & 95.3  & -    & \textbf{3.79}  & 342.3 & oom & -   \\
+              Clique  & 4               & \textbf{0.03} & 27.0 & 0.03 & -    & \textbf{0.82}  & 37.7  & 167.2 & -     & \textbf{1.14}  & 79.6  & 196.3 & -    & \textbf{9.39}  & 573.4 & oom & -   \\
+              Clique  & 5               & \textbf{0.04} & 29.9 & 0.04 & -    & \textbf{34.2}  & 299.0 & oom   & -     & \textbf{1.46}  & 84.8  & 212.9 & -    & \textbf{17.5}  & 697.3 & oom & -   \\\hline
+              \multicolumn{2}{c|}{TC}   & \textbf{0.02} & 23.2 & 0.05 & -    & \textbf{0.07}  & 25.1  & 2.7   & -     & \textbf{0.52}  & 70.1  & 5.41  & -    & \textbf{2.24}  & 287.1 & 39.7& -   \\\hline
+       
+       \end{tabular}
+\end{sidewaystable}
+
+\end{document}

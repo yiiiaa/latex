@@ -1,0 +1,126 @@
+\documentclass[border=3pt,tikz]{standalone}
+\tikzset{>=latex} % for LaTeX arrow head
+\usepackage{pgfplots} % for the axis environment
+%---------------------------------------------------
+\usetikzlibrary{patterns} %填充
+%---------------------------------------------------
+\pgfplotsset{compat=1.13} % TikZ coordinates <-> axes coordinates
+
+
+\definecolor{1000K}{rgb}{1,0.0337,0}
+\definecolor{2000K}{rgb}{1,0.2647,0.0033}
+\definecolor{3000K}{rgb}{1,0.4870,0.1411}
+\definecolor{4000K}{rgb}{1,0.6636,0.3583}
+\definecolor{5000K}{rgb}{1,0.7992,0.6045}
+\definecolor{6000K}{rgb}{1,0.9019,0.8473}
+\definecolor{8000K}{rgb}{0.7874,0.8187,1}
+\definecolor{10000K}{rgb}{0.6268,0.7039,1}
+\colorlet{myblue}{black!50!blue}
+\colorlet{myred}{black!50!red}
+%-------------------------颜色-----------------------------------------------
+\definecolor{grey01}{rgb}{0.243137255, 0.231372549, 0.247058824} %62,  59, 63
+\definecolor{grey02}{rgb}{0.396078431, 0.384313725, 0.4        } %101, 98,102
+\definecolor{grey03}{rgb}{0.43359375 , 0.43359375 , 0.43359375 } %111,111,111
+\definecolor{grey04}{rgb}{0.752941176, 0.741176471, 0.752941176} %192,189,192
+\definecolor{grey05}{rgb}{0.917647059, 0.917647059, 0.917647059} %234,234,234
+
+%-------------------------预设-----------------------------------------------
+\pgfplotscreateplotcyclelist{black_curve_2}{ 
+    {very thick, grey01,mark=o}, 
+    {very thick, grey02,mark=square}} 
+\pgfplotscreateplotcyclelist{black_curve_3}{ 
+    {very thick, grey01,mark=triangle}, 
+    {very thick, grey02,mark=square}, 
+    {very thick, grey03,mark=o}} 
+\pgfplotscreateplotcyclelist{black_curve_4}{ 
+    {very thick, grey01,mark=star}, 
+    {very thick, grey02,mark=square}, 
+    {very thick, grey03,mark=o}, 
+    {very thick, grey05,mark=triangle}}
+\pgfplotscreateplotcyclelist{black_curve_5}{ 
+    {very thick, grey01,mark=star}, 
+    {very thick, grey02,mark=square}, 
+    {very thick, grey03,mark=o}, 
+    {very thick, grey04,mark=diamond},
+    {very thick, grey05,mark=triangle}}
+
+
+\begin{document}
+% \begin{tikzpicture}
+%     \begin{axis}
+%         [width=\textwidth, tick align=outside]
+        
+%         \addplot[very thick, sharp plot, mark=star, draw = 1000K]
+%             table[col sep=comma, x index=0, y index=1] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=+, draw = 2000K]
+%             table[col sep=comma, x index=0, y index=2] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=x, draw = 3000K]
+%             table[col sep=comma, x index=0, y index=3] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=-, draw = 4000K]
+%             table[col sep=comma, x index=0, y index=4] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=o, draw = 5000K]
+%             table[col sep=comma, x index=0, y index=5] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=triangle, draw = 6000K]
+%             table[col sep=comma, x index=0, y index=6] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=diamond, draw = 8000K]
+%             table[col sep=comma, x index=0, y index=7] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=square, draw = 10000K]
+%             table[col sep=comma, x index=0, y index=8] {data/color.csv};
+%         % \addplot[very thick, sharp plot, mark=x, draw = myblue]
+%         %     table[col sep=comma, x index=0, y index=1] {data/color.csv};
+%         % \addplot[very thick, sharp plot, mark=x, draw = myred]
+%         %     table[col sep=comma, x index=0, y index=1] {data/color.csv};
+%         % \draw[dashed,red!40]
+%         %     (rel axis cs:0,0) -- (rel axis cs:1,1); 
+%     \end{axis}
+% \end{tikzpicture}
+
+% \begin{tikzpicture}
+%     \begin{axis}
+%         [width=\textwidth, tick align=outside]
+
+%         \addplot[very thick, sharp plot, mark=triangle, draw = grey01, every mark/.append style={rotate=90}, mark size=4pt]
+%             table[col sep=comma, x index=0, y index=1] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=square, draw = grey02, dotted, every mark/.append style={solid}]
+%             table[col sep=comma, x index=0, y index=2] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=x, draw = grey03]
+%             table[col sep=comma, x index=0, y index=3] {data/color.csv};
+%         \addplot[very thick, sharp plot, mark=o, draw = grey04]
+%             table[col sep=comma, x index=0, y index=4] {data/color.csv};
+%     \end{axis}
+% \end{tikzpicture}
+
+% \begin{tikzpicture}
+%     \begin{axis} 
+%            [ybar,enlargelimits=0.14,width=\textwidth, height=8cm,, 
+%            bar width=10pt,area legend,legend pos=south east, 
+%            legend style={legend pos=north west, cells={anchor=west}},
+%            tick align=outside,
+%            ylabel=\textbf{groups},
+%            xtick={1,...,5}
+%            % ,xticklabels={satisfiable,unsatisfiable, low density,high density,random}
+%            ] 
+%     \addplot[semithick, pattern=grid, pattern color = blue, draw=blue]       
+%            coordinates {(1,5) (2,10) (3,25) (4,40) (5,80)}; 
+%     \addlegendentry{\textsc{MAC}} 
+%     \addplot[draw=blue,fill=blue!50]       
+%            coordinates {(1,5) (2,15) (3,15) (4,50) (5,200)}; 
+%     \addlegendentry{\textsc{FC}} 
+%     \end{axis}
+% \end{tikzpicture}
+
+%------------------预设颜色标记格式--------------------------
+\begin{tikzpicture} 
+    \begin{axis}[width=\textwidth, tick align=outside,
+        cycle list name=black_curve_5] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=5] {data/color.csv};
+    
+\end{axis} 
+\end{tikzpicture}
+
+\end{document} 
