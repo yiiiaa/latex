@@ -1,126 +1,671 @@
-\documentclass[border=3pt,tikz]{standalone}
-\tikzset{>=latex} % for LaTeX arrow head
+\documentclass[border=3pt,tikz]{report}
+% \tikzset{>=latex} % for LaTeX arrow head
 \usepackage{pgfplots} % for the axis environment
 %---------------------------------------------------
 \usetikzlibrary{patterns} %填充
 %---------------------------------------------------
 \pgfplotsset{compat=1.13} % TikZ coordinates <-> axes coordinates
 
-
-\definecolor{1000K}{rgb}{1,0.0337,0}
-\definecolor{2000K}{rgb}{1,0.2647,0.0033}
-\definecolor{3000K}{rgb}{1,0.4870,0.1411}
-\definecolor{4000K}{rgb}{1,0.6636,0.3583}
-\definecolor{5000K}{rgb}{1,0.7992,0.6045}
-\definecolor{6000K}{rgb}{1,0.9019,0.8473}
-\definecolor{8000K}{rgb}{0.7874,0.8187,1}
-\definecolor{10000K}{rgb}{0.6268,0.7039,1}
-\colorlet{myblue}{black!50!blue}
-\colorlet{myred}{black!50!red}
 %-------------------------颜色-----------------------------------------------
-\definecolor{grey01}{rgb}{0.243137255, 0.231372549, 0.247058824} %62,  59, 63
-\definecolor{grey02}{rgb}{0.396078431, 0.384313725, 0.4        } %101, 98,102
-\definecolor{grey03}{rgb}{0.43359375 , 0.43359375 , 0.43359375 } %111,111,111
-\definecolor{grey04}{rgb}{0.752941176, 0.741176471, 0.752941176} %192,189,192
-\definecolor{grey05}{rgb}{0.917647059, 0.917647059, 0.917647059} %234,234,234
+%黑白
+\definecolor{color1-1}{rgb}{0.243137255, 0.231372549, 0.247058824} %62,  59, 63
+\definecolor{color1-2}{rgb}{0.396078431, 0.384313725, 0.4        } %101, 98,102
+% \definecolor{color1-3}{rgb}{0.43359375 , 0.43359375 , 0.43359375 } %111,111,111
+\definecolor{color1-3}{rgb}{0.59765625 , 0.59765625 , 0.59765625 } %153,153,153
+\definecolor{color1-4}{rgb}{0.752941176, 0.741176471, 0.752941176} %192,189,192
+\definecolor{color1-5}{rgb}{0.917647059, 0.917647059, 0.917647059} %234,234,234
+%color2
+\definecolor{color2_g}{rgb}{0.556862745, 0.811764706, 0.788235294}%142, 207, 201
+\definecolor{color2_o}{rgb}{1,           0.745098039, 0.478431373}%255, 190, 122
+\definecolor{color2_r}{rgb}{0.980392157, 0.498039216, 0.435294118}%250, 127, 111
+\definecolor{color2_b}{rgb}{0.509803922, 0.690196078, 0.823529412}%130, 176, 210
+\definecolor{color2_p}{rgb}{0.745098039, 0.721568627, 0.862745098}%190, 184, 220
+%210,32,39 %56,89,137 %127,165,183
+% \definecolor{color3_g}{rgb}{0.76862745, 0.98039216, 0.72941176}%196, 250, 186
+\definecolor{color3_g}{rgb}{0.38039216, 0.71372549, 0.30196078}% 97,  182,  77
+% \definecolor{color3_g}{rgb}{0.23529412, 0.70196078, 0.44313725}%60,  179, 113
+\definecolor{color3_o}{rgb}{0.9372549 , 0.51764706, 0.27058824}%254, 134, 86
+\definecolor{color3_b}{rgb}{0.30588235, 0.33333333, 0.72156863}% 78,  85, 184
+\definecolor{color3_p}{rgb}{0.51764706, 0.28627451, 0.84705882}%132, 73,216
+\definecolor{color3_r}{rgb}{0.9372549 , 0.22745098, 0.1254902 }%239, 58 , 32
 
 %-------------------------预设-----------------------------------------------
-\pgfplotscreateplotcyclelist{black_curve_2}{ 
-    {very thick, grey01,mark=o}, 
-    {very thick, grey02,mark=square}} 
-\pgfplotscreateplotcyclelist{black_curve_3}{ 
-    {very thick, grey01,mark=triangle}, 
-    {very thick, grey02,mark=square}, 
-    {very thick, grey03,mark=o}} 
-\pgfplotscreateplotcyclelist{black_curve_4}{ 
-    {very thick, grey01,mark=star}, 
-    {very thick, grey02,mark=square}, 
-    {very thick, grey03,mark=o}, 
-    {very thick, grey05,mark=triangle}}
-\pgfplotscreateplotcyclelist{black_curve_5}{ 
-    {very thick, grey01,mark=star}, 
-    {very thick, grey02,mark=square}, 
-    {very thick, grey03,mark=o}, 
-    {very thick, grey04,mark=diamond},
-    {very thick, grey05,mark=triangle}}
+\pgfplotscreateplotcyclelist{curve1-2}{ 
+    {very thick, color1-2,mark=o}, 
+    {very thick, color1-4,mark=square}} 
+\pgfplotscreateplotcyclelist{curve1-3}{ 
+    {very thick, color1-1,mark=triangle}, 
+    {very thick, color1-3,mark=square}, 
+    {very thick, color1-4,mark=o}} 
+\pgfplotscreateplotcyclelist{curve1-4}{ 
+    {very thick, color1-1,mark=diamond}, 
+    {very thick, color1-2,mark=square}, 
+    {very thick, color1-3,mark=o}, 
+    {very thick, color1-4,mark=triangle}}
+\pgfplotscreateplotcyclelist{curve1-5}{ 
+    {color1-1,mark=x}, 
+    {color1-2,mark=square}, 
+    {color1-3,mark=o}, 
+    {color1-4,mark=diamond},
+    {color1-5,mark=triangle}}
 
+\pgfplotscreateplotcyclelist{curve1-2-f}{ 
+    {very thick, color1-2,mark=*}, 
+    {very thick, color1-4,mark=square*}} 
+\pgfplotscreateplotcyclelist{curve1-3-f}{ 
+    {very thick, color1-1,mark=triangle*}, 
+    {very thick, color1-3,mark=square*}, 
+    {very thick, color1-4,mark=*}} 
+\pgfplotscreateplotcyclelist{curve1-4-f}{ 
+    {very thick, color1-1,mark=diamond*}, 
+    {very thick, color1-2,mark=square*}, 
+    {very thick, color1-3,mark=*}, 
+    {very thick, color1-4,mark=triangle*}}
+\pgfplotscreateplotcyclelist{curve1-5-f}{ 
+    {very thick, color1-1,mark=x}, 
+    {very thick, color1-2,mark=square*}, 
+    {very thick, color1-3,mark=*}, 
+    {very thick, color1-4,mark=diamond*},
+    {very thick, color1-5,mark=triangle*}}
 
-\begin{document}
-% \begin{tikzpicture}
-%     \begin{axis}
-%         [width=\textwidth, tick align=outside]
-        
-%         \addplot[very thick, sharp plot, mark=star, draw = 1000K]
-%             table[col sep=comma, x index=0, y index=1] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=+, draw = 2000K]
-%             table[col sep=comma, x index=0, y index=2] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=x, draw = 3000K]
-%             table[col sep=comma, x index=0, y index=3] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=-, draw = 4000K]
-%             table[col sep=comma, x index=0, y index=4] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=o, draw = 5000K]
-%             table[col sep=comma, x index=0, y index=5] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=triangle, draw = 6000K]
-%             table[col sep=comma, x index=0, y index=6] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=diamond, draw = 8000K]
-%             table[col sep=comma, x index=0, y index=7] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=square, draw = 10000K]
-%             table[col sep=comma, x index=0, y index=8] {data/color.csv};
-%         % \addplot[very thick, sharp plot, mark=x, draw = myblue]
-%         %     table[col sep=comma, x index=0, y index=1] {data/color.csv};
-%         % \addplot[very thick, sharp plot, mark=x, draw = myred]
-%         %     table[col sep=comma, x index=0, y index=1] {data/color.csv};
-%         % \draw[dashed,red!40]
-%         %     (rel axis cs:0,0) -- (rel axis cs:1,1); 
-%     \end{axis}
-% \end{tikzpicture}
-
-% \begin{tikzpicture}
-%     \begin{axis}
-%         [width=\textwidth, tick align=outside]
-
-%         \addplot[very thick, sharp plot, mark=triangle, draw = grey01, every mark/.append style={rotate=90}, mark size=4pt]
-%             table[col sep=comma, x index=0, y index=1] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=square, draw = grey02, dotted, every mark/.append style={solid}]
-%             table[col sep=comma, x index=0, y index=2] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=x, draw = grey03]
-%             table[col sep=comma, x index=0, y index=3] {data/color.csv};
-%         \addplot[very thick, sharp plot, mark=o, draw = grey04]
-%             table[col sep=comma, x index=0, y index=4] {data/color.csv};
-%     \end{axis}
-% \end{tikzpicture}
-
-% \begin{tikzpicture}
-%     \begin{axis} 
-%            [ybar,enlargelimits=0.14,width=\textwidth, height=8cm,, 
-%            bar width=10pt,area legend,legend pos=south east, 
-%            legend style={legend pos=north west, cells={anchor=west}},
-%            tick align=outside,
-%            ylabel=\textbf{groups},
-%            xtick={1,...,5}
-%            % ,xticklabels={satisfiable,unsatisfiable, low density,high density,random}
-%            ] 
-%     \addplot[semithick, pattern=grid, pattern color = blue, draw=blue]       
-%            coordinates {(1,5) (2,10) (3,25) (4,40) (5,80)}; 
-%     \addlegendentry{\textsc{MAC}} 
-%     \addplot[draw=blue,fill=blue!50]       
-%            coordinates {(1,5) (2,15) (3,15) (4,50) (5,200)}; 
-%     \addlegendentry{\textsc{FC}} 
-%     \end{axis}
-% \end{tikzpicture}
-
-%------------------预设颜色标记格式--------------------------
-\begin{tikzpicture} 
-    \begin{axis}[width=\textwidth, tick align=outside,
-        cycle list name=black_curve_5] 
-    % \pgfplotsset{cycle list shift=3}
-    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};
-    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
-    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
-    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
-    \addplot table[col sep=comma, x index=0, y index=5] {data/color.csv};
+\pgfplotscreateplotcyclelist{curve2-5}{ 
+    {very thick, color2_r,mark=triangle}, 
+    {very thick, color2_b,mark=square}, 
+    {very thick, color2_o,mark=o}, 
+    {very thick, color2_g,mark=diamond},
+    {very thick, color2_p,mark=x}}
     
+\pgfplotscreateplotcyclelist{curve2-5-f}{ 
+    {color2_r,mark=triangle*}, 
+    {color2_b,mark=square*}, 
+    {color2_o,mark=*}, 
+    {color2_g,mark=diamond*},
+    {color2_p,mark=x}}
+
+\pgfplotscreateplotcyclelist{curve3-5}{ 
+    {color3_r,mark=triangle}, 
+    {color3_b,mark=square}, 
+    {color3_o,mark=o},
+    {color3_p,mark=diamond},
+    {color3_g,mark=x}}
+%柱状图  
+\pgfplotscreateplotcyclelist{bar1-2}{ 
+    {very thick, fill = color1-2}, 
+    {very thick, fill = color1-5}}  
+\pgfplotscreateplotcyclelist{bar1-3}{ 
+    {very thick, fill = color1-2}, 
+    {very thick, fill = color1-4},
+    {very thick, fill = color1-5}}  
+\pgfplotscreateplotcyclelist{bar1-4}{ 
+    {very thick, fill = color1-2}, 
+    {very thick, fill = color1-3}, 
+    {very thick, fill = color1-4},
+    {very thick, fill = color1-5}}  
+\pgfplotscreateplotcyclelist{bar1-5}{ 
+    {very thick, fill = color1-1}, 
+    {very thick, fill = color1-2}, 
+    {very thick, fill = color1-3}, 
+    {very thick, fill = color1-4},
+    {very thick, fill = color1-5}} 
+
+\pgfplotscreateplotcyclelist{bar1-2-n}{ 
+    {very thick, fill = color1-2, color1-2}, 
+    {very thick, fill = color1-5, color1-5}}  
+\pgfplotscreateplotcyclelist{bar1-3-n}{ 
+    {very thick, fill = color1-2, color1-2}, 
+    {very thick, fill = color1-4, color1-4},
+    {very thick, fill = color1-5, color1-5}}  
+\pgfplotscreateplotcyclelist{bar1-4-n}{ 
+    {very thick, fill = color1-2, color1-2}, 
+    {very thick, fill = color1-3, color1-3}, 
+    {very thick, fill = color1-4, color1-4},
+    {very thick, fill = color1-5, color1-5}}  
+\pgfplotscreateplotcyclelist{bar1-5-n}{ 
+    {very thick, fill = color1-1, color1-1}, 
+    {very thick, fill = color1-2, color1-2}, 
+    {very thick, fill = color1-3, color1-3}, 
+    {very thick, fill = color1-4, color1-4},
+    {very thick, fill = color1-5, color1-5}} 
+
+\pgfplotscreateplotcyclelist{bar1-2-p}{ 
+    {very thick}, 
+    {very thick, pattern=north east lines}}
+\pgfplotscreateplotcyclelist{bar1-3-p}{ 
+    {very thick}, 
+    {very thick, pattern=north east lines},
+    {very thick, pattern=crosshatch dots}}
+\pgfplotscreateplotcyclelist{bar1-4-p}{ 
+    {very thick}, 
+    {very thick, pattern=north east lines}, 
+    {very thick, pattern=crosshatch dots},
+    {very thick, pattern=crosshatch}}
+\pgfplotscreateplotcyclelist{bar1-5-p}{ 
+    {very thick}, 
+    {very thick, pattern=north east lines}, 
+    {very thick, pattern=checkerboard}, 
+    {very thick, pattern=crosshatch dots},
+    {very thick, pattern=crosshatch}}
+
+\pgfplotscreateplotcyclelist{breakdown1-3}{ 
+    {very thick, fill = color1-4}, 
+    {very thick, pattern=north east lines, preaction={fill, color1-4}},
+    {very thick, pattern=north east lines, preaction={fill, white}}}
+
+\pgfplotscreateplotcyclelist{bar2-5}{ 
+    {fill = color2_r}, 
+    {fill = color2_b}, 
+    {fill = color2_o}, 
+    {fill = color2_g},
+    {fill = color2_p}}
+
+\pgfplotscreateplotcyclelist{bar2-5-n}{ 
+    {fill = color2_r,  color2_r}, 
+    {fill = color2_b,  color2_b}, 
+    {fill = color2_o,  color2_o}, 
+    {fill = color2_g,  color2_g},
+    {fill = color2_p,  color2_p}}
+
+\pgfplotscreateplotcyclelist{bar3-4}{ 
+    {fill = color3_r, color3_r}, 
+    {fill = color3_b, color3_b}, 
+    {fill = color3_p, color3_p}, 
+    {fill = color3_o, color3_o}} 
+
+\pgfplotscreateplotcyclelist{bar3-6}{ 
+    {fill = color3_r, color3_r}, 
+    {color3_r, pattern=north east lines, pattern color = color3_r},
+    {fill = color3_b, color3_b}, 
+    {color3_b, pattern=north east lines, pattern color = color3_b},
+    {fill = color3_p, color3_p}, 
+    {color3_p, pattern=north east lines, pattern color = color3_p}} 
+
+    \begin{document}
+%------------------1--------------------------
+\begin{Huge}\textbf{color1}\end{Huge}
+
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve1-2,
+        ylabel=\textbf{curve1-2}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
 \end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve1-3,
+        ylabel=\textbf{curve1-3}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve1-4,
+        ylabel=\textbf{curve1-4}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve1-5,
+        ylabel=\textbf{curve1-5}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=5] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve1-2-f,
+        ylabel=\textbf{curve1-2-f}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve1-3-f,
+        ylabel=\textbf{curve1-3-f}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve1-4-f,
+        ylabel=\textbf{curve1-4-f}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve1-5-f,
+        ylabel=\textbf{curve1-5-f}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=5] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=10pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar1-2},
+           xtick={1,...,5},
+           cycle list name=bar1-2
+           ] 
+    \addplot       
+           coordinates {(1,5)}; 
+    % \addlegendentry{\textsc{MAC}} 
+    \addplot       
+           coordinates {(1,5)}; 
+    % \addlegendentry{\textsc{FC}} 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar1-3},
+           xtick={1,...,5},
+           cycle list name=bar1-3
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar1-4},
+           xtick={1,...,5},
+           cycle list name=bar1-4
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar1-5},
+           xtick={1,...,5},
+           cycle list name=bar1-5
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=10pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar1-2-p},
+           xtick={1,...,5},
+           cycle list name=bar1-2-p
+           ] 
+    \addplot       
+           coordinates {(1,5)}; 
+    % \addlegendentry{\textsc{MAC}} 
+    \addplot       
+           coordinates {(1,5)}; 
+    % \addlegendentry{\textsc{FC}} 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar1-3-p},
+           xtick={1,...,5},
+           cycle list name=bar1-3-p
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar1-4-p},
+           xtick={1,...,5},
+           cycle list name=bar1-4-p
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar1-5-p},
+           xtick={1,...,5},
+           cycle list name=bar1-5-p
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar stacked, stack plots=y, tick align=outside, 
+           width=.5\textwidth, height=6cm, bar width=10pt, 
+           legend style={legend pos=north west, cells={anchor=west}}, area legend, 
+           ylabel=\textbf{bar1-3}, 
+           xtick={1,...,5},
+           cycle list name=bar1-3
+           % ,xticklabels={Russia,Netherlands,France, South Korea,Japan}
+           ] 
+           \addplot table[col sep=comma, x index=0, y index=1] {data/breakdown.csv};
+           \addlegendentry{Gold} 
+           \addplot table[col sep=comma, x index=0, y index=2] {data/breakdown.csv};
+           \addlegendentry{Silver} 
+           \addplot table[col sep=comma, x index=0, y index=3] {data/breakdown.csv};
+           \addlegendentry{Bronze} 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar stacked, stack plots=y, tick align=outside, 
+           width=.5\textwidth, height=6cm, bar width=10pt, 
+           legend style={legend pos=north west, cells={anchor=west}}, area legend, 
+           ylabel=\textbf{breakdown1-3}, 
+           xtick={1,...,5},
+           cycle list name=breakdown1-3
+           % ,xticklabels={Russia,Netherlands,France, South Korea,Japan}
+           ] 
+           \addplot table[col sep=comma, x index=0, y index=1] {data/breakdown.csv};
+           \addlegendentry{t1} 
+           \addplot table[col sep=comma, x index=0, y index=2] {data/breakdown.csv};
+           \addlegendentry{overlap} 
+           \addplot table[col sep=comma, x index=0, y index=3] {data/breakdown.csv};
+           \addlegendentry{t2} 
+    \end{axis}
+\end{tikzpicture}
+%---------------------2-----------------------------------------------------
+
+\begin{Huge}\textbf{color2}\end{Huge}
+
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve2-5,
+        ylabel=\textbf{curve2-5}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve2-5,
+        ylabel=\textbf{curve2-5}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve2-5,
+        ylabel=\textbf{curve2-5}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve2-5-f,
+        ylabel=\textbf{curve2-5-f}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=5] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=10pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar2-5-n},
+           xtick={1,...,5},
+           cycle list name=bar2-5-n
+           ] 
+    \addplot       
+           coordinates {(1,5)}; 
+    % \addlegendentry{\textsc{MAC}} 
+    \addplot       
+           coordinates {(1,5)}; 
+    % \addlegendentry{\textsc{FC}} 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar2-5-n},
+           xtick={1,...,5},
+           cycle list name=bar2-5-n
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar2-5-n},
+           xtick={1,...,5},
+           cycle list name=bar2-5-n
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar2-5-n},
+           xtick={1,...,5},
+           cycle list name=bar2-5-n
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+
+%---------------------3-----------------------------------------------------
+
+\begin{Huge}\textbf{color3}\end{Huge}
+
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve3-5,
+        ylabel=\textbf{curve3-5}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve3-5,
+        ylabel=\textbf{curve3-5}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve3-5,
+        ylabel=\textbf{curve3-5}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+\begin{tikzpicture} 
+    \begin{axis}[width=.25\textwidth, height=3cm, tick align=outside,
+        cycle list name=curve3-5,
+        ylabel=\textbf{curve3-5}] 
+    % \pgfplotsset{cycle list shift=3}
+    \addplot table[col sep=comma, x index=0, y index=5] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=4] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=3] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=2] {data/color.csv};
+    \addplot table[col sep=comma, x index=0, y index=1] {data/color.csv};    
+\end{axis} 
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=10pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar3-4},
+           xtick={1,...,5},
+           cycle list name=bar3-4
+           ] 
+    \addplot       
+           coordinates {(1,5)}; 
+    % \addlegendentry{\textsc{MAC}} 
+    \addplot       
+           coordinates {(1,5)}; 
+    % \addlegendentry{\textsc{FC}} 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar3-4},
+           xtick={1,...,5},
+           cycle list name=bar3-4
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar3-4},
+           xtick={1,...,5},
+           cycle list name=bar3-4
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{axis} 
+           [ybar,enlargelimits=0.14,width=.25\textwidth, height=3cm,, 
+           bar width=5pt,area legend,legend pos=south east, 
+           legend style={legend pos=north west, cells={anchor=west}},
+           tick align=outside,
+           ylabel=\textbf{bar3-6},
+           xtick={1,...,5},
+           cycle list name=bar3-6
+           ] 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \addplot coordinates {(1,5)}; 
+    \end{axis}
 \end{tikzpicture}
 
 \end{document} 
