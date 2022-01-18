@@ -1,0 +1,557 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{patterns} %填充
+\usetikzlibrary{
+        matrix,
+    }
+\makeatletter
+\makeatother
+
+\definecolor{color1-1}{rgb}{0.243137255, 0.231372549, 0.247058824} 
+\definecolor{color1-2}{rgb}{0.396078431, 0.384313725, 0.4        } 
+\definecolor{color1-3}{rgb}{0.59765625 , 0.59765625 , 0.59765625 } 
+\definecolor{color1-4}{rgb}{0.752941176, 0.741176471, 0.752941176} 
+\definecolor{color1-5}{rgb}{0.956862745, 0.956862745, 0.956862745} 
+\definecolor{color1-6}{rgb}{0.844444444, 0.844444444, 0.844444444} 
+\definecolor{color1-r}{rgb}{0.9372549 , 0.22745098, 0.1254902 }
+% \definecolor{color1-b}{rgb}{0.2, 0.2, 0.6}
+\definecolor{color1-b}{rgb}{0, 0, 0.80392157}
+
+\definecolor{color-1}{rgb}{0.29019608,  0.54117647,  0.77647059 }
+\definecolor{color-2}{rgb}{0.22352941,  0.39215686,  0.60392157 }
+\definecolor{color-3}{rgb}{0.14509804,  0.25882353,  0.46666667}
+\definecolor{color-4}{rgb}{0.08627451,  0.16862745,  0.36862745}
+\definecolor{color-5}{rgb}{0         ,           0,          0 }
+\definecolor{color-6}{rgb}{0.19607843,  0.2       ,  0.3254902 }
+\definecolor{color-7}{rgb}{0.23529412,  0.23921569,  0.34117647}
+\definecolor{color-8}{rgb}{0.37647059,  0.37647059,  0.43921569}
+\definecolor{color-9}{rgb}{0.53333333,  0.5372549 ,  0.5372549 }
+\definecolor{color-10}{rgb}{0.752941176, 0.741176471, 0.752941176}
+
+% \definecolor{color-1}{rgb}{0.9372549 ,  0.22745098,  0.1254902 }
+% \definecolor{color-2}{rgb}{0.9372549 ,  0.51764706,  0.27058824}
+% \definecolor{color-3}{rgb}{0.98039216,  0.87058824,  0.30196078}
+% \definecolor{color-4}{rgb}{0.38039216,  0.71372549,  0.30196078}
+% \definecolor{color-5}{rgb}{0.30588235, 0.33333333, 0.72156863}
+% \definecolor{color-6}{rgb}{0.62352941,  0.31764706,  0.4       }
+% \definecolor{color-7}{rgb}{0.70196078,  0.35294118,  0.38039216}
+% \definecolor{color-8}{rgb}{0.77254902,  0.39215686,  0.36470588}
+% \definecolor{color-9}{rgb}{0.82745098,  0.41960784,  0.35294118}
+% \definecolor{color-10}{rgb}{0.90980392,  0.45490196,  0.34117647}
+
+
+\pgfplotscreateplotcyclelist{bar1-2}{ 
+    {fill = color1-5}, 
+    {fill = color1-2}
+}
+
+\pgfplotscreateplotcyclelist{curve1-6}{ 
+    {black},
+    {color1-1},
+    {color1-2}, 
+    {color1-3},
+    {color1-4},
+    {color1-6}
+}
+
+\pgfplotscreateplotcyclelist{curve1}{ 
+    {color-1},
+    {color-2}, 
+    {color-3},
+    {color-4},
+    {color-5},
+    {color-6}
+}
+\pgfplotscreateplotcyclelist{curve2}{ 
+    {color-5},
+    {color-6},
+    {color-7},
+    {color-8},
+    {color-9}, 
+    {color-10}
+}
+
+\begin{document}
+
+% \begin{tikzpicture}
+%     \begin{axis} 
+%            [ylabel=Normalized Time, 
+%             ybar stacked, stack plots=y, bar width=10pt, 
+%             ymin=0,ymax=1,
+%             xmin=0,xmax=15,
+%             xtick={0,...,15},xtick style={draw=none}, xticklabels={,10,11,12,13,14,15,16,17,18,19,20,21,22,23,},
+%             ytick style={draw=none},
+%             ylabel near ticks, 
+%             height=6cm, 
+%             width=\textwidth,
+%             legend style={
+%                 font=\footnotesize,
+%                 cells={anchor=west},
+%                 legend columns=5,
+%                 at={(0.3,-0.15)},
+%                 anchor=north,
+%                 /tikz/every even column/.append style={column sep=0.2cm}
+%                 }
+%            ] 
+%            \addplot table[col sep=comma, x index=0, y index=5] {data/lj-bs.csv};
+%            \addlegendentry{Comp.} 
+%            \addplot table[col sep=comma, x index=0, y index=4] {data/lj-bs.csv};
+%            \addlegendentry{Sele.} 
+%     \end{axis}
+%     \begin{axis} 
+%         [ylabel=Run Time(s),
+%         ymin=0,ymax=32,
+%         xmin=0,xmax=15,
+%         xmajorticks=false,
+%         % xtick={0,...,15}, xtick style={draw=none},
+%         ylabel near ticks, yticklabel pos=right, ytick style={draw=none},
+%         height=6cm, 
+%         width=\textwidth,
+%         legend style={
+%             font=\footnotesize,
+%             cells={anchor=west},
+%             legend columns=5,
+%             at={(0.71,-0.15)},
+%             anchor=north,
+%             /tikz/every even column/.append style={column sep=0.2cm}
+%             }
+%         ] 
+%         \addplot table[col sep=comma, x index=0, y index=6] {data/lj-bs.csv};
+%         \addlegendentry{Overall}  
+%  \end{axis}
+% \end{tikzpicture}
+
+% \begin{tikzpicture}
+%     \begin{axis} 
+%            [ybar stacked, stack plots=y, bar width=8pt, 
+%             % ylabel=Normalized Time, 
+%             ymin=0,ymax=1,
+%             xmin=0,xmax=29,
+%             ticks=none,
+%             % xmajorticks=false,
+%             % xtick={0,...,29},xtick style={draw=none}, xticklabels={,10,11,12,13,14,15,16,17,18,19,20,21,22,23,,14,15,16,17,18,19,20,21,22,23,24,25,26}, 
+%             % ytick style={draw=none},
+%             % ylabel near ticks, 
+%             height=6cm, 
+%             width=\textwidth,
+%             legend style={
+%                 font=\footnotesize,
+%                 cells={anchor=west},
+%                 legend columns=5,
+%                 at={(0.3,1.15)},
+%                 anchor=north,
+%                 /tikz/every even column/.append style={column sep=0.2cm}
+%                 },
+%             cycle list name=bar1-2
+%            ] 
+%            \addplot table[col sep=comma, x index=0, y index=5] {data/lj-bs.csv};
+%            \addlegendentry{Comp.} 
+%            \addplot table[col sep=comma, x index=0, y index=4] {data/lj-bs.csv};
+%            \addlegendentry{Sele.} 
+%     \end{axis}
+%     \begin{axis} 
+%            [ylabel=Normalized Time, 
+%             ybar stacked, stack plots=y, bar width=8pt, 
+%             ymin=0,ymax=1,
+%             xmin=0,xmax=29,
+%             xmajorticks=false,
+%             % xtick={0,...,29},xtick style={draw=none}, xticklabels={,10,11,12,13,14,15,16,17,18,19,20,21,22,23,,14,15,16,17,18,19,20,21,22,23,24,25,26}, 
+%             ytick style={draw=none},
+%             ylabel near ticks, 
+%             height=6cm, 
+%             width=\textwidth,
+%             cycle list name=bar1-2
+%            ] 
+%            \addplot table[col sep=comma, x index=0, y index=5] {data/tw-bs.csv};
+%            \addplot table[col sep=comma, x index=0, y index=4] {data/tw-bs.csv};
+%     \end{axis}
+%     \begin{axis} 
+%         [ymin=0,ymax=184,
+%         xmin=0,xmax=29,
+%         ticks=none,
+%         % xmajorticks=false,
+%         % xtick={0,...,29},xtick style={draw=none}, xticklabels={,10,11,12,13,14,15,16,17,18,19,20,21,22,23,,14,15,16,17,18,19,20,21,22,23,24,25,26}, 
+%         % ylabel near ticks, yticklabel pos=right, ytick style={draw=none},
+%         height=6cm, 
+%         width=\textwidth,
+%         legend style={
+%             font=\footnotesize,
+%             cells={anchor=west},
+%             legend columns=5,
+%             at={(0.71,1.15)},
+%             anchor=north,
+%             /tikz/every even column/.append style={column sep=0.2cm}
+%             },
+%         ] 
+%         \addplot [very thick, color1-r,mark=*] table[col sep=comma, x index=0, y index=6] {data/lj-bs.csv};
+%         \addlegendentry{Overall}  
+%     \end{axis}
+%     \begin{axis} 
+%         [ylabel=Run Time(s),
+%         ymin=0,ymax=184,
+%         xmin=0,xmax=29,
+%         % xmajorticks=false,
+%         xtick={0,...,29},xtick style={draw=none}, xticklabels={,10,11,12,13,14,15,16,17,18,19,20,21,22,23,,14,15,16,17,18,19,20,21,22,23,24,25,26}, 
+%         extra x ticks={7, 22.5},
+%         extra x tick labels={LJ,TW},
+%         extra x tick style={yshift=-15pt},
+%         ylabel near ticks, yticklabel pos=right, ytick style={draw=none},
+%         height=6cm, 
+%         width=\textwidth,
+%         ] 
+%         \addplot[very thick, color1-r,mark=*] table[col sep=comma, x index=0, y index=6] {data/tw-bs.csv};
+%         % \addlegendentry{Overall}  
+%     \end{axis}
+% \end{tikzpicture}
+
+\begin{tikzpicture}[font=\tiny]
+    \begin{axis} 
+           [ybar stacked, stack plots=y, bar width=3pt, 
+            % ylabel=Normalized Time, 
+            ymin=0,ymax=1,
+            xmin=0,xmax=29,
+            ticks=none,
+            % xmajorticks=false,
+            % xtick={0,...,29},xtick style={draw=none}, xticklabels={,10,11,12,13,14,15,16,17,18,19,20,21,22,23,,14,15,16,17,18,19,20,21,22,23,24,25,26}, 
+            % ytick style={draw=none},
+            % ylabel near ticks, 
+            height=3cm, 
+            width=.5\textwidth,
+            legend style={
+                font=\tiny,
+                cells={anchor=west},
+                legend columns=5,
+                at={(0.28,1.39)},
+                anchor=north,
+                /tikz/every even column/.append style={column sep=0.1cm},
+                draw=none,
+                },
+            cycle list name=bar1-2
+           ] 
+           \addplot table[col sep=comma, x index=0, y index=5] {data/lj-bs.csv};
+           \addlegendentry{Comp.} 
+           \addplot table[col sep=comma, x index=0, y index=4] {data/lj-bs.csv};
+           \addlegendentry{Sele.} 
+    \end{axis}
+    \begin{axis} 
+           [ylabel=Norm. Time, 
+            ybar stacked, stack plots=y, bar width=3pt, 
+            ymin=0,ymax=1,
+            xmin=0,xmax=29,
+            xmajorticks=false,
+            % xtick={0,...,29},xtick style={draw=none}, xticklabels={,10,11,12,13,14,15,16,17,18,19,20,21,22,23,,14,15,16,17,18,19,20,21,22,23,24,25,26}, 
+            ytick style={draw=none},ticklabel style = {font=\tiny},
+            ylabel near ticks, 
+            height=3cm, 
+            width=.5\textwidth,
+            cycle list name=bar1-2
+           ] 
+           \addplot table[col sep=comma, x index=0, y index=5] {data/tw-bs.csv};
+           \addplot table[col sep=comma, x index=0, y index=4] {data/tw-bs.csv};
+    \end{axis}
+    \begin{axis} 
+        [ymin=0,ymax=184,
+        xmin=0,xmax=29,
+        ticks=none,
+        % xmajorticks=false,
+        % xtick={0,...,29},xtick style={draw=none}, xticklabels={,10,11,12,13,14,15,16,17,18,19,20,21,22,23,,14,15,16,17,18,19,20,21,22,23,24,25,26}, 
+        % ylabel near ticks, yticklabel pos=right, ytick style={draw=none},
+        height=3cm, 
+        width=.5\textwidth,
+        legend style={
+            font=\tiny,
+            cells={anchor=west},
+            legend columns=5,
+            at={(0.79,1.35)},
+            anchor=north,
+            /tikz/every even column/.append style={column sep=0.1cm},
+            draw=none,
+            },
+        ] 
+        \addplot [thick, color1-r] table[col sep=comma, x index=0, y index=6] {data/lj-bs.csv};
+        \addlegendentry{Overall}  
+    \end{axis}
+    \begin{axis} 
+        [ylabel=Run Time(s),
+        ymin=0,ymax=184,
+        xmin=0,xmax=29,
+        % xmajorticks=false,
+        xtick={0,...,29},xtick style={draw=none}, xticklabels={,10, , , , , , , , , , , , ,23, ,14, , , , , , , , , , , ,26}, 
+        extra x ticks={7, 22.5},
+        extra x tick labels={LJ,TW},
+        extra x tick style={yshift=-5pt},
+        ticklabel style = {font=\tiny},
+        ylabel near ticks, yticklabel pos=right, ytick style={draw=none},
+        height=3cm, 
+        width=.5\textwidth,
+        ] 
+        \addplot[thick, color1-r] table[col sep=comma, x index=0, y index=6] {data/tw-bs.csv};
+        % \addlegendentry{Overall}  
+    \end{axis}
+\end{tikzpicture}
+
+% \pgfplotsset{
+% compat=1.11,
+% }
+\begin{tikzpicture}[font=\tiny]
+    \begin{axis}[ylabel=Frequency,
+        ymin=0,xmin=1,
+        ylabel near ticks, 
+        ytick={0,0.2,0.4,0.6,0.8,1}, ytick style={draw=none},
+        xmode=log, xtick style={draw=none},
+        height=3cm, 
+        width=.3\textwidth,
+        cycle list name=curve1-6,
+        legend style={
+            font=\tiny,
+            cells={anchor=west},
+            legend columns=3,
+            at={(0.5,1.64)},
+            anchor=north,
+            /tikz/every even column/.append style={column sep=0.03cm},
+            draw=none,
+            legend image code/.code={
+                \draw[mark repeat=2,mark phase=2]
+                plot coordinates {
+                (0cm,0cm)
+                (0.1cm,0cm)        %% default is (0.3cm,0cm)
+                (0.2cm,0cm)         %% default is (0.6cm,0cm)
+                };%
+            }
+        },
+    ]
+    \addplot table[col sep=comma, x index=0, y index=1] {data/lj-selecting.csv};
+    \addplot table[col sep=comma, x index=2, y index=3] {data/lj-selecting.csv};
+    \addplot table[col sep=comma, x index=4, y index=5] {data/lj-selecting.csv};
+    \addplot table[col sep=comma, x index=6, y index=7] {data/lj-selecting.csv};
+    \addplot table[col sep=comma, x index=8, y index=9] {data/lj-selecting.csv};
+    \addplot table[col sep=comma, x index=10, y index=11] {data/lj-selecting.csv};
+    \legend{$2^{12}$,$2^{13}$,$2^{14}$,$2^{15}$,$2^{16}$,$2^{17}$} 
+    \addplot[densely dashed, color1-r] coordinates {(1,0.9) (10,0.9) (10,0)};
+    \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture} [font=\tiny]
+    \begin{axis}[ylabel=Frequency,
+        ylabel near ticks, 
+        ymin=0,xmin=1,
+        ytick={0,0.2,0.4,0.6,0.8,1}, ytick style={draw=none},
+        xmode=log, xtick style={draw=none},
+        height=3cm, 
+        width=.3\textwidth,
+        cycle list name=curve1-6,
+        legend style={
+            font=\tiny,
+            cells={anchor=west},
+            legend columns=3,
+            at={(0.5,1.64)},
+            anchor=north,
+            /tikz/every even column/.append style={column sep=0.1cm},
+            draw=none,
+            legend image code/.code={
+                \draw[mark repeat=2,mark phase=2]
+                plot coordinates {
+                (0cm,0cm)
+                (0.1cm,0cm)        %% default is (0.3cm,0cm)
+                (0.2cm,0cm)         %% default is (0.6cm,0cm)
+                };%
+            }
+        },
+    ]
+    \addplot table[col sep=comma, x index=0, y index=1] {data/tw-selecting.csv};
+    \addplot table[col sep=comma, x index=2, y index=3] {data/tw-selecting.csv};
+    \addplot table[col sep=comma, x index=4, y index=5] {data/tw-selecting.csv};
+    \addplot table[col sep=comma, x index=6, y index=7] {data/tw-selecting.csv};
+    \addplot table[col sep=comma, x index=8, y index=9] {data/tw-selecting.csv};
+    \addplot table[col sep=comma, x index=10, y index=11] {data/tw-selecting.csv};
+    \legend{$2^{16}$,$2^{17}$,$2^{18}$,$2^{19}$,$2^{20}$,$2^{21}$} 
+    \addplot[densely dashed, color1-r] coordinates {(1,0.9) (10,0.9) (10,0)};
+    \end{axis}
+    
+     
+\end{tikzpicture}
+
+% \begin{tikzpicture}[font=\tiny]
+%     \begin{axis}[ylabel=Frequency,
+%         ylabel near ticks, 
+%         ytick={0,0.2,0.4,0.6,0.8,1}, ytick style={draw=none},
+%         xmode=log, xtick style={draw=none},
+%         height=3cm, 
+%         width=.3\textwidth,
+%         cycle list name=curve1,
+%         legend style={
+%             font=\tiny,
+%             cells={anchor=west},
+%             legend columns=5,
+%             at={(1,1.64)},
+%             anchor=north,
+%             /tikz/every even column/.append style={column sep=0.1cm},
+%             draw=none,
+%             legend image code/.code={
+%                 \draw[mark repeat=2,mark phase=2]
+%                 plot coordinates {
+%                 (0cm,0cm)
+%                 (0.15cm,0cm)        %% default is (0.3cm,0cm)
+%                 (0.3cm,0cm)         %% default is (0.6cm,0cm)
+%                 };%
+%             }
+%         },
+%     ]
+%     \addplot table[col sep=comma, x index=0, y index=1] {data/lj-selecting.csv};
+%     \addlegendentry{$2^{12}$}
+%     \addplot table[col sep=comma, x index=2, y index=3] {data/lj-selecting.csv};
+%     \addlegendentry{$2^{13}$}
+%     \addplot table[col sep=comma, x index=4, y index=5] {data/lj-selecting.csv};
+%     \addlegendentry{$2^{14}$}
+%     \addplot table[col sep=comma, x index=6, y index=7] {data/lj-selecting.csv};
+%     \addlegendentry{$2^{15}$}
+%     \addplot table[col sep=comma, x index=8, y index=9] {data/lj-selecting.csv};
+%     \addlegendentry{$2^{16}$}
+%     \addplot table[col sep=comma, x index=10, y index=11] {data/lj-selecting.csv};
+%     % \legend{$2^{12}$,$2^{13}$,$2^{14}$,$2^{15}$,$2^{16}$,$2^{17}$} 
+%     \end{axis}
+%     \begin{axis}[
+%         at={(0.17\linewidth,0)},
+%         ytick={0,0.2,0.4,0.6,0.8,1}, ytick style={draw=none}, ymajorticks=false,
+%         xmode=log, xtick style={draw=none},
+%         height=3cm, 
+%         width=.3\textwidth,
+%         cycle list name=curve2,
+%         legend style={
+%             font=\tiny,
+%             cells={anchor=west},
+%             legend columns=5,
+%             at={(0,1.37)},
+%             anchor=north,
+%             /tikz/every even column/.append style={column sep=0.1cm},
+%             draw=none,
+%             legend image code/.code={
+%                 \draw[mark repeat=2,mark phase=2]
+%                 plot coordinates {
+%                 (0cm,0cm)
+%                 (0.15cm,0cm)        %% default is (0.3cm,0cm)
+%                 (0.3cm,0cm)         %% default is (0.6cm,0cm)
+%                 };%
+%             }
+%         },
+%     ]
+%     \addplot table[col sep=comma, x index=0, y index=1] {data/tw-selecting.csv};
+%     \addplot table[col sep=comma, x index=2, y index=3] {data/tw-selecting.csv};
+%     \addlegendentry{$2^{17}$}
+%     \addplot table[col sep=comma, x index=4, y index=5] {data/tw-selecting.csv};
+%     \addlegendentry{$2^{18}$}
+%     \addplot table[col sep=comma, x index=6, y index=7] {data/tw-selecting.csv};
+%     \addlegendentry{$2^{19}$}
+%     \addplot table[col sep=comma, x index=8, y index=9] {data/tw-selecting.csv};
+%     \addlegendentry{$2^{20}$}
+%     \addplot table[col sep=comma, x index=10, y index=11] {data/tw-selecting.csv};
+%     \addlegendentry{$2^{21}$}
+%     % \legend{$2^{12}$,$2^{13}$,$2^{14}$,$2^{15}$,$2^{16}$,$2^{17}$,$2^{18}$,$2^{19}$,$2^{20}$,$2^{21}$} 
+%     \end{axis}
+% \end{tikzpicture}
+
+% \begin{tikzpicture}[font=\tiny]
+%     \begin{axis} 
+%         [ybar,width=.5\textwidth,height=3cm,ymin=0,ymax=1,xmin=-1,xmax=16,ticks=none,
+%         bar width=2pt,
+%         % area legend,
+%         legend image post style={scale=0.5}, 
+%         legend style={
+%             font=\tiny,
+%             cells={anchor=west},
+%             legend columns=1,
+%             at={(0.23,1.55)},
+%             anchor=north,
+%             /tikz/every even column/.append style={column sep=0.1cm},
+%             draw=none,
+%         },
+%         ]
+%         \addplot[fill=color1-2] table[col sep=comma, x index=0, y index=2] {data/result.csv};      
+%         % \addlegendentry{Gemini} 
+%         \addplot[fill=color1-b] table[col sep=comma, x index=0, y index=5] {data/result.csv};      
+%         % \addlegendentry{GraphPB} 
+%     \end{axis}
+
+%     \begin{axis} 
+%         [ybar stacked, stack plots=y, width=.5\textwidth,height=3cm,ymin=0,ymax=1,xmin=-1,xmax=16,
+%         bar width=2pt,
+%         ylabel=Norm. Time, ylabel near ticks, 
+%         ytick={0,0.5,1},ytick style={draw=none},
+%         xmajorticks=false, ticklabel style = {font=\tiny},
+%         extra description/.code={
+%             \node[
+%                 font = \tiny,
+%                 at={(0.65,1.47)},
+%                 anchor=north,
+%                 text width=.5\textwidth - 4pt,
+%                 inner sep=2pt,
+%                 outer sep=0pt,
+%             ] {
+%                 \hbox to \linewidth{
+%                     \draw[fill=color1-2] (0pt,0.cm) rectangle (2pt, 5pt);
+%                     % \draw[fill=color1-2] (1pt,0.cm) rectangle (3pt,5pt); 
+%                     \quad Gemini \quad \enspace
+%                     \draw[fill=color1-5, pattern=north east lines, preaction={fill, color1-5}] (0pt,0.cm) rectangle (2pt, 5pt);
+%                     \draw[fill=color1-5] (1pt,0.cm) rectangle (3pt,5pt); 
+%                     \quad GridGraph load/comp
+%                 }
+%             };
+%             \node[
+%                 font = \tiny,
+%                 at={(0.65,1.27)},
+%                 anchor=north,
+%                 text width=.5\textwidth - 4pt,
+%                 inner sep=2pt,
+%                 outer sep=0pt,
+%             ] {
+%                 \hbox to \linewidth{
+%                     \draw[fill=color1-b] (0pt,0.cm) rectangle (2pt, 5pt);
+%                     % \draw[fill=color1-b] (1pt,0.cm) rectangle (3pt,5pt); 
+%                     \quad GraphPB \enspace
+%                     \draw[thick, color1-r] (0pt,1pt) -- (8pt,1pt); 
+%                     \quad \enspace \#unconverged 
+%                 }
+%             };
+%         },
+%         % area legend, 
+%         % legend image post style={scale=0.5},
+%         % legend style={
+%         %     font=\tiny,
+%         %     cells={anchor=west},
+%         %     legend columns=1,
+%         %     at={(0.7,1.55)},
+%         %     anchor=north,
+%         %     /tikz/every even column/.append style={column sep=0.1cm},
+%         %     draw=none,
+%         % },
+%         ]
+%         \addplot[fill=color1-5, pattern=north east lines, preaction={fill, color1-5}] table[col sep=comma, x index=0, y index=3] {data/result.csv};      
+%         % \addlegendentry{GridGraph load} 
+%         \addplot[fill=color1-5] table[col sep=comma, x index=0, y index=4] {data/result.csv};      
+%         % \addlegendentry{GridGraph comp} 
+%     \end{axis}
+
+%     \begin{axis} 
+%         [ymin=0,ymax=1,xmin=-1,xmax=16,height=3cm, width=.5\textwidth,
+%         ylabel=Norm. Number, ylabel near ticks, yticklabel pos=right,
+%         % xtick={-1,...,16},xtick style={draw=none}, xticklabels={,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,}, 
+%         xmajorticks=false,
+%         ytick={0,0.5,1},ytick style={draw=none},
+%         ticklabel style = {font=\tiny},
+%         legend style={
+%             font=\tiny,
+%             cells={anchor=west},
+%             legend columns=1,
+%             at={(0.5,1.77)},
+%             anchor=north,
+%             /tikz/every even column/.append style={column sep=0.1cm},
+%             draw=none,
+%             },
+%         ] 
+%         \addplot [thick, color1-r] table[col sep=comma, x index=0, y index=1] {data/result.csv};
+%         % \addlegendentry{\# unconverged}  
+%     \end{axis}
+    
+% \end{tikzpicture}
+
+\end{document}
